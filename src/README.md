@@ -14,6 +14,7 @@
 ![Alt text](myimages/Screenshot%202023-04-08%20at%2010.11.57%20PM.png)
 - The app depends on db service therefore thiis will start db before app .This is a way to form links between the container . both the containers can acces each other just by using the service name
 - i dont need to manually link them as in mysql image  bydefault the port 3306 is exposed the app service can connect to db container just by using its name
+- Just do docker compose up --build to start all the containers 
 - added .dockerignore file tooo 
 ![Alt text](myimages/Screenshot%202023-04-08%20at%2010.25.52%20PM.png)
 

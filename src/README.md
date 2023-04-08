@@ -1,34 +1,41 @@
-# TASK1
+# TASK2
 
 ## FINAL CODE  
 
- ![hi](myimages/Screenshot%202023-04-08%20at%208.56.29%20PM.png)
+ ![Alt text](myimages/Screenshot%202023-04-08%20at%2010.02.02%20PM.png)
 
-- Made  sure to use 3.0.5 based ruby image
-- adding Gemfile before  the entire source code becoz to optimize Caching image layers . As later changes will be done more in the src folder so we need that layer in the end .In this way we can use the previous cached layers this makes building the image much faster
-- Once a layer is changed all the following layer recreate as well  .
-- Runing the surver with bundle exec rails command  .
-- 0.0.0.0 signifies to bind with any avalibale  ip address
-- First build ur image and then run the container  . We are maping port 3000 of our host to the container using publish option as  our applications runs on that port 
+- I used docker compose to   build and start the containers as it was easier then individually creating them and linking
+- I have used mysql image from dockerhub its prebuilt . For app i am using custome image which i have build in my previous task
+- i am using version 3.8 as it enable me to us depends on feature and also network feature in the docker compose file .
+- i am mapping the port 8080 to 3000 of the app service the website willl be accssiable at <http://0.0.0.0:8080/>
+- I have created the neccessary environment variable as the mysql image demands  credentials to verify . i am passing these using environment variable  
+- I also realised that passing user name and password this way is not the recommanded way insetead we can use new feature called secrets  to pass the credentials .Currently i didnt use tht method
+- Modified database.yml to read the evnironment variables too
+![Alt text](myimages/Screenshot%202023-04-08%20at%2010.11.57%20PM.png)
+- The app depends on db service therefore thiis will start db before app .This is a way to form links between the container . both the containers can acces each other just by using the service name
+- i dont need to manually link them as in mysql image  bydefault the port 3306 is exposed the app service can connect to db container just by using its name
+- added .dockerignore file tooo 
+![Alt text](myimages/Screenshot%202023-04-08%20at%2010.25.52%20PM.png)
 
+- Finally i can acces the website  
+![Alt text](myimages/Screenshot%202023-04-08%20at%2010.05.00%20PM.png)
+
+
+
+## Errors
+
+- The first time when u access the site u get this error .
+
+![Alt text](myimages/Screenshot%202023-04-08%20at%2010.02.28%20PM.png)
+- I did the data migration using this command  
 ```bash
 
- docker run -it -p 3000:3000 --name con1 <image name>       
+docker-compose run --rm app rails db:migrate
 
 
 ```
 
-## Failed images
-
-- I tried to optimise the size of image by using alpine  images
- ![Alt text](myimages/Screenshot%202023-04-01%20at%2010.04.30%20PM.png)
-- I got this error . If iT was succes then the Iamge size would have reduced tfrom 1G to 450 mb I believe this is due to some  specific dependencies which i am supposed to instal in alpine
-   ![Alt text](myimages/Screenshot%202023-04-08%20at%209.20.13%20PM.png)
-- I though of using multistage build to optimize the size but it didnt make a big difference  only few MB was reduced .
-
 ## Drawbacks
 
-- The current image size is 1GB  which is not recommanded i will try to improve this by identifiying the right commands to be used in alpine based image
-- Multistage build is missing (Though i would do it in the end if i had enough time )
+- Unprofessional way of passing the credentials . I should be using .env or secrets to pass the password
 
-- also i havnt done data migration within my docker file .I wasnt sure if  it was the best way to do so .In the upcoming task u  will see how i did data migration

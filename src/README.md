@@ -1,28 +1,16 @@
-# TASK5
+# TASK7
 
 ## FINAL CODE  
 
 
-![Alt text](myimages/Screenshot%202023-04-08%20at%2011.36.14%20PM.png)
+![Alt text](myimages/Screenshot%202023-04-09%20at%2012.01.26%20AM.png)
 
-- I used volumes over bind mounts for this specifi reason 
- 
- 1. With Bind, you have 2 technologies to take care of. Your host machine directory structure as well as Docker.
- 2. Migration of Volumes are easier not only on local machines but on cloud machines as well.
- 3. Volumes are managed by docker itself 
-
-- The flag external: false  tells that we havnt created the volume on our host  .if its true it measn we have already created the volume and we are asking docker to use tht particular volume  .
-
-
-## Error
-- unable to access the volume .As u can see the location of volume but i tried to acces this location n i am unable to 
-![Alt text](myimages/Screenshot%202023-04-08%20at%205.38.08%20PM.png)
-
-- The error 
-![Alt text](myimages/Screenshot%202023-04-08%20at%2011.41.45%20PM.png)
+- $binary_remote_addr = We will be using IP addres  for rate limiting 
+- zone=req_limit = NAMING OUR ZONE AS REQ_LIMIT
+- 10m = about of memory allotted to the zone . so we can store store approx 17k IPs
+- rate=1r/s; = per use request should be 1 request per second(NGNIX  works with miliseconds bydefault)
+- burst = 5 .  a client can make 5 request  in excess of the rate specified by the zone 
+- The following errors is shown when i exceed the rate
 
 
-
-
-- When i use external: True in the dockericompose file and make aa volume on my host and try to acces the  site i got the following error which i was not able to fix 
-![Alt text](myimages/Screenshot%202023-04-08%20at%204.31.52%20PM.png)
+![Alt text](myimages/Screenshot%202023-04-08%20at%207.24.34%20PM.png)

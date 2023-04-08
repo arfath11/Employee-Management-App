@@ -16,8 +16,7 @@ services:
 
   app:
    build: .
-   ports: 
-    - "8080:3000"
+   
    
    environment:
       DB_USER: root
@@ -28,6 +27,16 @@ services:
    depends_on:
 
     - db
+
+   
+  proxy:
+   build: ./rev_prox
+   ports:
+    - "8080:80"
+   depends_on:
+    - app 
+    
+
   
 
      

@@ -1,39 +1,34 @@
-# Employee Management App
-This is a Ruby on Rails based web application for managing employee data.
+# TASK1
 
-## Installation
+## FINAL CODE  
 
-Before you can deploy the Employee Management App, you need to make sure that you have the following dependencies installed on your machine:
+ ![hi](myimages/Screenshot%202023-04-08%20at%208.56.29%20PM.png)
 
-- Ruby (3.0.5)
-- Mysql or Mariadb
+- Made  sure to use 3.0.5 based ruby image
+- adding Gemfile before  the entire source code becoz to optimize Caching image layers . As later changes will be done more in the src folder so we need that layer in the end .In this way we can use the previous cached layers this makes building the image much faster
+- Once a layer is changed all the following layer recreate as well  .
+- Runing the surver with bundle exec rails command  .
+- 0.0.0.0 signifies to bind with any avalibale  ip address
+- First build ur image and then run the container  . We are maping port 3000 of our host to the container using publish option as  our applications runs on that port 
 
-Clone the repository to your local machine.
 ```bash
-git clone https://github.com/Utkar5hM/Employee-Management-App.git
-cd src
+
+ docker run -it -p 3000:3000 --name con1 <image name>       
+
+
 ```
 
-Configure database settings at `config/database.yml`.
+## Failed images
 
-Install the necessary gems by running the following command in the terminal.
-```bash
-bundle install
-```
-Precompile the assets using the following command.
-```bash
-bundle exec rails assets:precompile
-```
-Migrate the database using the following command.
-```bash
-bundle exec rails db:migrate
-```
-Start the server using the following command.
-```bash
-bundle exec rails s -p 3000 -b '0.0.0.0'
-```
+- I tried to optimise the size of image by using alpine  images
+ ![Alt text](myimages/Screenshot%202023-04-01%20at%2010.04.30%20PM.png)
+- I got this error . If iT was succes then the Iamge size would have reduced tfrom 1G to 450 mb I believe this is due to some  specific dependencies which i am supposed to instal in alpine
+   ![Alt text](myimages/Screenshot%202023-04-08%20at%209.20.13%20PM.png)
+- I though of using multistage build to optimize the size but it didnt make a big difference  only few MB was reduced .
 
-## Usage
+## Drawbacks
 
-After starting the server, you can access the web application by visiting http://localhost:3000 in your web browser.
+- The current image size is 1GB  which is not recommanded i will try to improve this by identifiying the right commands to be used in alpine based image
+- Multistage build is missing (Though i would do it in the end if i had enough time )
 
+- also i havnt done data migration within my docker file .I wasnt sure if  it was the best way to do so .In the upcoming task u  will see how i did data migration

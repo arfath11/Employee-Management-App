@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+
+  db:
+   image: mysql:5.7
+   platform: linux/amd64
+
+
+   restart: always
+   environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: app
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password      
+
+
+  app:
+   build: .
+   ports: 
+    - "8080:3000"
+   
+   environment:
+      DB_USER: root
+      DB_NAME: app
+      DB_PASSWORD: password
+      DB_HOST: db 
+
+   depends_on:
+
+    - db
+  
+
+     
+
+ 

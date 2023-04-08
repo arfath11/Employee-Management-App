@@ -1,30 +1,28 @@
-# TASK4
+# TASK5
 
 ## FINAL CODE  
 
-- I launched 3 container in total using this simple command  . This command replicates the app service within docker-compose file
 
-```bash
+![Alt text](myimages/Screenshot%202023-04-08%20at%2011.36.14%20PM.png)
 
-docker compose up --scale app=3
+- I used volumes over bind mounts for this specifi reason 
+ 
+ 1. With Bind, you have 2 technologies to take care of. Your host machine directory structure as well as Docker.
+ 2. Migration of Volumes are easier not only on local machines but on cloud machines as well.
+ 3. Volumes are managed by docker itself 
 
-
-```
-
-- Initial output while running compoe file
-![Alt text](myimages/Screenshot%202023-04-08%20at%2011.20.43%20PM.png)
-- After running the command . U can see 2 containers being created
-![Alt text](myimages/Screenshot%202023-04-08%20at%2011.20.59%20PM.png)
-- The old ngnix config file by default load balances in a   ROUND ROBIN FORM .This can be confirmed by seeing the app service log
-![Alt text](myimages/Screenshot%202023-04-08%20at%2011.22.47%20PM.png)
-- As u can see the load is balance between 3 containers in a round robin form  
--to see the logs i used this command
-
-```bash
-
-docker-compose logs -f app
+- The flag external: false  tells that we havnt created the volume on our host  .if its true it measn we have already created the volume and we are asking docker to use tht particular volume  .
 
 
-```
-## Improvements
-- Weights can be used to load balance too .Then u need to create separate services and give them special names  in the docker compose file 
+## Error
+- unable to access the volume .As u can see the location of volume but i tried to acces this location n i am unable to 
+![Alt text](myimages/Screenshot%202023-04-08%20at%205.38.08%20PM.png)
+
+- The error 
+![Alt text](myimages/Screenshot%202023-04-08%20at%2011.41.45%20PM.png)
+
+
+
+
+- When i use external: True in the dockericompose file and make aa volume on my host and try to acces the  site i got the following error which i was not able to fix 
+![Alt text](myimages/Screenshot%202023-04-08%20at%204.31.52%20PM.png)

@@ -8,6 +8,8 @@
 - I have used mysql image from dockerhub its prebuilt . For app i am using custome image which i have build in my previous task
 - i am using version 3.8 as it enable me to us depends on feature and also network feature in the docker compose file .
 - i am mapping the port 8080 to 3000 of the app service the website willl be accssiable at <http://0.0.0.0:8080/>
+- i had to use    platform: linux/amd64 since i was using mac and it threw some error . Adding this link fixed it 
+
 - I have created the neccessary environment variable as the mysql image demands  credentials to verify . i am passing these using environment variable  
 - I also realised that passing user name and password this way is not the recommanded way insetead we can use new feature called secrets  to pass the credentials .Currently i didnt use tht method
 - Modified database.yml to read the evnironment variables too

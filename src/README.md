@@ -31,3 +31,7 @@
 
 
 ```
+## Improvements
+- I could have used networks in the docker compose file to create 2 different network bridge one for frontend and one for backend
+
+- Since it was a small scale applications i didnt create different networks 

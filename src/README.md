@@ -1,37 +1,30 @@
-# TASK3
+# TASK4
 
 ## FINAL CODE  
 
-![Alt text](myimages/Screenshot%202023-04-08%20at%2010.58.40%20PM.png)
-
-- Added proxy service which uses the  custome image
-- It depends on app
-- my rev proxy image which is being built
-![Alt text](myimages/Screenshot%202023-04-08%20at%2010.58.54%20PM.png)
-
-- removed the default configurations and added my own  
-![Alt text](myimages/Screenshot%202023-04-08%20at%2010.59.12%20PM.png)
-- The server listens on 80 and i have done proxy pass to app container at port 3000 since the applciation is running on that specific port
-- a simple dockcer compse up will turn on all the services
-
-## Errors
-
-- Initially my config file was like this and it threw the below error
-![Alt text](myimages/Screenshot%202023-04-08%20at%2011.00.30%20PM.png)
-- THE ERROR
-![Alt text](myimages/Screenshot%202023-04-08%20at%2011.01.33%20PM.png)
-- i fixed it my modifying  ngnix  config file they were
+- I launched 3 container in total using this simple command  . This command replicates the app service within docker-compose file
 
 ```bash
 
-  proxy_pass http://app:3000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+docker compose up --scale app=3
+
+
+```
+
+- Initial output while running compoe file
+![Alt text](myimages/Screenshot%202023-04-08%20at%2011.20.43%20PM.png)
+- After running the command . U can see 2 containers being created
+![Alt text](myimages/Screenshot%202023-04-08%20at%2011.20.59%20PM.png)
+- The old ngnix config file by default load balances in a   ROUND ROBIN FORM .This can be confirmed by seeing the app service log
+![Alt text](myimages/Screenshot%202023-04-08%20at%2011.22.47%20PM.png)
+- As u can see the load is balance between 3 containers in a round robin form  
+-to see the logs i used this command
+
+```bash
+
+docker-compose logs -f app
 
 
 ```
 ## Improvements
-- I could have used networks in the docker compose file to create 2 different network bridge one for frontend and one for backend
-
-- Since it was a small scale applications i didnt create different networks 
+- Weights can be used to load balance too .Then u need to create separate services and give them special names  in the docker compose file 

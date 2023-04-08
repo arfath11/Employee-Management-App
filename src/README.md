@@ -11,6 +11,3 @@
 - Result
 ![Alt text](myimages/Screenshot%202023-04-09%20at%2012.21.14%20AM.png)
 
-Error
-
-- Currently unable to run in background

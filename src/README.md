@@ -1,6 +1,7 @@
-# TASK7
+# Containerization
 
-## FINAL CODE  
+## Steps to deploy the applicaation 
+
 
 
 ![Alt text](myimages/Screenshot%202023-04-09%20at%2012.01.26%20AM.png)

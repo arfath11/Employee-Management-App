@@ -4,7 +4,7 @@
 
 
 ## Steps to deploy the applicaation 
-- Build and the containers using 
+- Build and run the containers using 
 ```bash
 
 docker-compose up --build  
